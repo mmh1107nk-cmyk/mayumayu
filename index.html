@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPアドレス探検隊 | ネットワーク体験学習</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="badge">NETWORK QUEST</div>
+      <h1>IPアドレス<span>ってなに？</span></h1>
+      <p class="lead">ネットの「じゅうしょ」を探検しよう。</p>
+      <p class="sub">高校生向け・さわって学ぶネットワーク入門</p>
+      <button class="start-btn" data-scroll="#map">探検をはじめる ▶</button>
+    </div>
+    <div class="floating-packet packet-a">DATA</div>
+    <div class="floating-packet packet-b">192.168.1.20</div>
+  </header>
 
+  <main>
+    <section class="section intro">
+      <div class="section-label">MISSION 01</div>
+      <h2>IPアドレスは「ネットの住所」</h2>
+      <p>手紙に住所が必要なように、ネットワークでデータを届けるには「どこへ送るか」を表す情報が必要です。</p>
+      <div class="analogy">
+        <div class="analogy-card"><span class="emoji">✉️</span><strong>手紙</strong><small>住所を見て届ける</small></div>
+        <div class="arrow">→</div>
+        <div class="analogy-card active"><span class="emoji">💻</span><strong>データ</strong><small>IPアドレスを使って届ける</small></div>
+      </div>
+    </section>
+
+    <section class="section dark" id="map">
+      <div class="section-label">MISSION 02</div>
+      <h2>ネットワークをのぞいてみよう</h2>
+      <p>下の機器をクリックすると、それぞれの「住所」の役割がわかります。</p>
+      <div class="network-map">
+        <div class="internet-cloud" data-info="internet"><span>☁️</span><b>インターネット</b><small>広い世界</small></div>
+        <div class="connection-line line1"></div>
+        <div class="router" data-info="router"><span>📡</span><b>ルーター</b><small>192.168.1.1</small></div>
+        <div class="lan-line l1"></div><div class="lan-line l2"></div><div class="lan-line l3"></div>
+        <div class="device pc" data-info="pc"><span>💻</span><b>PC</b><small>192.168.1.20</small></div>
+        <div class="device phone" data-info="phone"><span>📱</span><b>スマホ</b><small>192.168.1.21</small></div>
+        <div class="device printer" data-info="printer"><span>🖨️</span><b>プリンター</b><small>192.168.1.30</small></div>
+      </div>
+      <div class="info-panel" id="infoPanel">
+        <div class="info-icon">👆</div>
+        <div><b>機器をクリック！</b><p>ネットワークの「住所」がどう使われるか見てみよう。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">MISSION 03</div>
+      <h2>2種類の「住所」を使い分ける</h2>
+      <div class="address-toggle">
+        <button class="toggle active" data-address="global">🌍 グローバルIP</button>
+        <button class="toggle" data-address="private">🏠 プライベートIP</button>
+      </div>
+      <div class="address-card" id="addressCard">
+        <div class="address-visual"><span id="addressIcon">🌍</span><strong id="addressTitle">グローバルIP</strong></div>
+        <div class="address-copy">
+          <h3 id="addressHeading">インターネット側の住所</h3>
+          <p id="addressText">インターネット上で通信するときに使われる住所。家庭や学校では、ルーターが持つグローバルIPを複数の機器で共有することもあります。</p>
+          <div class="example" id="addressExample">例：203.0.113.10</div>
+        </div>
+      </div>
+      <p class="note">※ プライベートIPは、別々のネットワークなら同じ番号が使われても問題ありません。</p>
+    </section>
+
+    <section class="section dark">
+      <div class="section-label">MISSION 04</div>
+      <h2>ネットワークを動かす「4つの情報」</h2>
+      <p>カードを開いて、それぞれの役割を確認しよう。</p>
+      <div class="four-cards">
+        <button class="fact-card" data-fact="ip"><span>01</span><b>IPアドレス</b><strong>機器の住所</strong><small>192.168.1.20</small></button>
+        <button class="fact-card" data-fact="mask"><span>02</span><b>サブネットマスク</b><strong>ネットワークの範囲</strong><small>255.255.255.0</small></button>
+        <button class="fact-card" data-fact="gateway"><span>03</span><b>デフォルトゲートウェイ</b><strong>外へ出る玄関</strong><small>192.168.1.1</small></button>
+        <button class="fact-card" data-fact="dns"><span>04</span><b>DNSサーバー</b><strong>名前→IPの翻訳係</strong><small>8.8.8.8</small></button>
+      </div>
+      <div class="fact-detail" id="factDetail">カードをクリックすると詳しい説明が表示されます。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">MISSION 05</div>
+      <h2>住所は「自動」？「手動」？</h2>
+      <div class="mode-switch">
+        <button class="mode active" data-mode="dhcp">⚡ DHCP・自動</button>
+        <button class="mode" data-mode="static">📌 固定IP・手動</button>
+      </div>
+      <div class="mode-result" id="modeResult">
+        <div class="mode-icon">⚡</div>
+        <div>
+          <h3>DHCPで自動設定</h3>
+          <p>ルーターなどのDHCPサーバーが、IPアドレスなどを自動で配ります。家庭や学校のPC・スマホなどでよく使われます。</p>
+          <div class="chat"><span>ROUTER</span>「きみの住所は <b>192.168.1.20</b> ね！」</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section terminal-section dark">
+      <div class="section-label">MISSION 06</div>
+      <h2>コマンドで「通信」を調査せよ</h2>
+      <p>実際のWindowsで使うコマンドを、ここでは安全なシミュレーターで体験できます。</p>
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span><b>NETWORK TERMINAL</b></div>
+        <div class="terminal-body">
+          <div class="terminal-buttons">
+            <button class="cmd-btn" data-cmd="ipconfig">ipconfig</button>
+            <button class="cmd-btn" data-cmd="ping">ping 192.168.1.1</button>
+            <button class="cmd-btn" data-cmd="ping-google">ping google.com</button>
+            <button class="cmd-btn" data-cmd="clear">clear</button>
+          </div>
+          <pre id="terminalOutput">C:\&gt; _</pre>
+        </div>
+      </div>
+      <div class="command-explain" id="commandExplain">コマンドを選んで実行してみよう。</div>
+    </section>
+
+    <section class="section quiz-section">
+      <div class="section-label">FINAL MISSION</div>
+      <h2>ネットワーク探検クイズ</h2>
+      <div class="quiz-box">
+        <div class="quiz-progress" id="quizProgress">QUESTION 1 / 5</div>
+        <h3 id="quizQuestion"></h3>
+        <div id="quizChoices" class="quiz-choices"></div>
+        <div id="quizFeedback" class="quiz-feedback"></div>
+        <button class="next-btn" id="nextQuiz" hidden>次の問題 ▶</button>
+      </div>
+    </section>
+
+    <section class="section recap">
+      <div class="section-label">MISSION COMPLETE</div>
+      <h2>今日の3ポイント</h2>
+      <div class="recap-grid">
+        <div><b>01</b><h3>IP = 住所</h3><p>データをどこへ届けるかを示す。</p></div>
+        <div><b>02</b><h3>LANとインターネット</h3><p>プライベートIPとグローバルIPを使い分ける。</p></div>
+        <div><b>03</b><h3>コマンドで確認</h3><p>ipconfigやpingで通信の状態を調べられる。</p></div>
+      </div>
+      <button class="top-btn" data-scroll=".hero">もう一度探検する ↑</button>
+    </section>
+  </main>
+
+  <footer>IP NETWORK QUEST <span>— 高校生向けネットワーク体験教材</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
